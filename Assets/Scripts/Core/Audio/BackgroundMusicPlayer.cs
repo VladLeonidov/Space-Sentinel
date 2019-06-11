@@ -38,20 +38,32 @@ namespace Core.Audio
 
         private void Start()
         {
-            ManagerProvider.EventManager.EndMusicEvent.Subscribe(OnMusicEnd);
+            //ManagerProvider.EventManager.EndMusicEvent.Subscribe(OnMusicEnd);
 
-            if (this.randomOrder)
-            {
-                PlayWithRandomOrder();
-            }
-            else
-            {
-                Play();
-            }
+            //if (this.randomOrder)
+            //{
+            //    PlayWithRandomOrder();
+            //}
+            //else
+            //{
+            //    Play();
+            //}
         }
 
         private void Update()
         {
+            if (!ManagerProvider.AudioManager.IsPlayMusic)
+            {
+                if (this.randomOrder)
+                {
+                    PlayWithRandomOrder();
+                }
+                else
+                {
+                    Play();
+                }
+            }
+
             if (this.musicList[_musicListIndex].IsInterrupt)
             {
                 InterruptMusic(this.musicList[_musicListIndex].InterruptDelay);
@@ -81,6 +93,10 @@ namespace Core.Audio
             if (_musicListIndex == rand)
             {
                 _musicListIndex = ++rand;
+            }
+            else
+            {
+                _musicListIndex = rand;
             }
 
             if (_musicListIndex >= this.musicList.Length)
@@ -122,7 +138,7 @@ namespace Core.Audio
         private void OnDestroy()
         {
             ManagerProvider.AudioManager.StopMusic();
-            ManagerProvider.EventManager.EndMusicEvent.Unsubscribe(OnMusicEnd);
+            //ManagerProvider.EventManager.EndMusicEvent.Unsubscribe(OnMusicEnd);
         }
 
         private void OnMusicEnd()

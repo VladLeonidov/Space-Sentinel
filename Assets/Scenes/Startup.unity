@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffcd628e39aaa244be4862eb6b4a6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelUpMultiplicity: 500
+  _levelUpMultiplicity: 3000
 --- !u!114 &870420286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +322,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
+        type: 3}
+      propertyPath: musicList.Array.data[0].interruptDelay
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
+        type: 3}
+      propertyPath: musicList.Array.data[1].interruptDelay
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
+        type: 3}
+      propertyPath: musicList.Array.data[2].interruptDelay
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
+        type: 3}
+      propertyPath: musicList.Array.data[3].interruptDelay
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
+        type: 3}
+      propertyPath: randomOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8772d2be748daa148ba3a12a73ca0cec, type: 3}

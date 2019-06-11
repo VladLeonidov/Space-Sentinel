@@ -9,7 +9,6 @@ namespace Core.Managers
     {
         private AudioSource _audioSourceSound;
         private AudioSource _audioSourceMusic;
-        private AudioSource _audioSourceMusicHelper;
 
         private float _musicVolume;
 
@@ -28,7 +27,6 @@ namespace Core.Managers
                 _musicVolume = Mathf.Clamp(value, 0f, 1f);
 
                 _audioSourceMusic.volume = _musicVolume;
-                _audioSourceMusicHelper.volume = _musicVolume;
                 ManagerProvider.SettingsManager.CurrMusicVolume = _musicVolume;
             }
         }
@@ -49,13 +47,16 @@ namespace Core.Managers
 
         private void Update()
         {
-            if (_musicTimePlaying >= _audioSourceMusic.clip.length - CrossfadeRateDelay)
+            if (!_audioSourceMusic.loop)
             {
-                StopMusic();
-            }
-            else if (IsPlayMusic)
-            {
-                _musicTimePlaying += Time.deltaTime;
+                if (_musicTimePlaying >= _audioSourceMusic.clip.length - CrossfadeRateDelay)
+                {
+                    StopMusic();
+                }
+                else if (IsPlayMusic)
+                {
+                    _musicTimePlaying += Time.deltaTime;
+                }
             }
         }
 
@@ -79,15 +80,10 @@ namespace Core.Managers
 
             _audioSourceSound = audioSourceSoundObject.GetComponent<AudioSource>();
             _audioSourceMusic = audioSourceMusicObject.GetComponent<AudioSource>();
-            _audioSourceMusicHelper = audioSourceMusicHelperObject.GetComponent<AudioSource>();
 
             _audioSourceMusic.playOnAwake = false;
             _audioSourceMusic.ignoreListenerPause = true;
             _audioSourceMusic.ignoreListenerVolume = true;
-
-            _audioSourceMusicHelper.playOnAwake = false;
-            _audioSourceMusicHelper.ignoreListenerPause = true;
-            _audioSourceMusicHelper.ignoreListenerVolume = true;
 
             SoundVolume = 0.7f;
             MusicVolume = 0.8f;
@@ -100,10 +96,8 @@ namespace Core.Managers
         {
             Destroy(_audioSourceSound);
             Destroy(_audioSourceMusic);
-            Destroy(_audioSourceMusicHelper);
             _audioSourceSound = null;
             _audioSourceMusic = null;
-            _audioSourceMusicHelper = null;
         }
 
         public void PlaySound(AudioClip clip)
@@ -127,7 +121,7 @@ namespace Core.Managers
 
         public void StopMusic()
         {
-            if (IsPlayMusic && _audioSourceMusic != null /*&& _audioSourceMusicHelper != null*/)
+            if (IsPlayMusic && _audioSourceMusic != null)
             {
                 StartCoroutine(CrossfadeMusic(CrossfadeRate));
             }
@@ -144,21 +138,13 @@ namespace Core.Managers
                 yield return null;
             }
 
-            //AudioSource tmp = _audioSourceMusic;
-
-            //_audioSourceMusic = _audioSourceMusicHelper;
-            //_audioSourceMusic.volume = MusicVolume;
-
-            //_audioSourceMusicHelper = tmp;
-            //_audioSourceMusicHelper.Stop();
-
             _audioSourceMusic.Stop();
             _audioSourceMusic.volume = MusicVolume;
 
             IsPlayMusic = false;
             _musicTimePlaying = 0f;
 
-            ManagerProvider.EventManager.EndMusicEvent.OnEvent();
+            //ManagerProvider.EventManager.EndMusicEvent.OnEvent();
         }
     }
 }
