@@ -323,31 +323,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
-        type: 3}
-      propertyPath: musicList.Array.data[0].interruptDelay
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
-        type: 3}
-      propertyPath: musicList.Array.data[1].interruptDelay
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
-        type: 3}
-      propertyPath: musicList.Array.data[2].interruptDelay
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
-        type: 3}
-      propertyPath: musicList.Array.data[3].interruptDelay
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2956336611527172407, guid: 8772d2be748daa148ba3a12a73ca0cec,
-        type: 3}
-      propertyPath: randomOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8772d2be748daa148ba3a12a73ca0cec, type: 3}
 --- !u!1 &1933834034
